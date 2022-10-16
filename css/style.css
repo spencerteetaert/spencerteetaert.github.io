@@ -25,19 +25,25 @@ body {
 /* Social Media Bar */
 .social_icon {
     float: left;
+    border-radius: 10px;
+    padding: 10px;
 }
 @media screen and (max-width: 950px) {
-    .social_icon.text {
+    .social_icon .text {
         display: none;
     }
     .social_icon {
         padding: 0px 10px;
     }
 }
-.social_icon.text {
-    padding: 8px 25px 8px 15px;
+.social_icon .text {
+    float: left;
+    padding: 8px 15px;
 }
-.social_icon:hover {
+.social_icon .logo {
+    float: left;
+}
+.social_icon :hover {
     cursor: pointer;
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
 }
