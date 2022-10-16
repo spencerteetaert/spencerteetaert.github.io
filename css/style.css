@@ -7,10 +7,16 @@
     --tertiary: #F0F0F0; 
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #ffffff;
     color: var(--foreground);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
 }
 
 #header {
@@ -49,6 +55,13 @@ body {
     float: left;
     border-radius: 10px;
     padding: 10px;
+}
+footer .social_icon .logo  {
+    background-color: var(--tertiary);
+    border-radius: 100px;
+    padding: 10px;
+    width: 24px;
+    height: 24px;
 }
 @media screen and (max-width: 1000px) {
     .social_icon .text {
@@ -89,7 +102,8 @@ body {
 #CV_btn :hover {
     cursor: pointer;
     background-color: var(--primary);
-    color: var(--background)
+    color: var(--background);
+    transition: 0.2s;
 }
 
 /* Projects display */
@@ -114,8 +128,28 @@ body {
 .project:hover > img {
     filter: blur(2px);
     cursor:pointer;
+    transition: 0.2s;
 }
 .project:hover > a {
     display: block;
     z-index: 100;
+    transition: 0.2s;
+}
+
+footer {
+    width:100%;
+    padding: 50px 0px;
+    background-color: var(--superdark);
+    color: var(--tertiary)
+}
+#footerContainer {
+    width: 800px;
+    margin:auto;
+    columns:2;
+}
+@media screen and (max-width: 1400px) {
+    #footerContainer {
+        columns: 1;
+        width:350px;
+    }
 }
