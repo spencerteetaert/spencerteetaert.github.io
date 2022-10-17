@@ -36,6 +36,73 @@ body {
     clear: both;
 }
 
+/* Nav bar */
+.nav {
+    overflow: hidden;
+    padding: 0px 30px;
+}
+.nav a {
+    float: left;
+    padding: 25px 10px;
+    min-width: 100px;
+    color: var(--foreground);
+    text-decoration: none;
+    text-align: center;
+}
+.nav .selected {
+    color: var(--secondary);
+    text-decoration:solid;
+    font-weight: bold;
+}
+.dropdown {
+    float:left;
+    overflow:hidden;
+}
+.dropdown .dropdown_btn {
+  border: none;
+  outline: none;
+  color: var(--foreground);
+  padding: 28px 10px;
+  min-width: 150px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  font-size: inherit;
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+.dropdown_btn .selected {
+    color: var(--secondary);
+    margin:100px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content a {
+    float: none;
+    color: var(--foreground);
+    padding: 25px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.nav a:hover, .dropdown:hover .dropdown_btn {
+    background-color: var(--tertiary);
+}
+.nav a:hover {
+    background-color: var(--tertiary);
+}
+
+/* Body elements */
+
 #bodyContainer {
     padding: 0px 2%;
 }
@@ -134,8 +201,8 @@ footer .social_icon .logo  {
 
 .img_description {
     position:absolute;
-    top:-28px;
-    bottom:-21px;
+    top:-27px;
+    bottom:-20px;
     left:0px;
     right:0px;
     visibility: hidden;
@@ -156,6 +223,17 @@ footer .social_icon .logo  {
     transition: 0.2s;
     z-index: 100;
 }
+
+.project_git_link {
+    border-radius: 10px;
+    padding: 10px 8px;
+}
+
+.project_git_link :hover {
+    cursor: pointer;
+}
+
+/* Footer */
 footer {
     width:100%;
     padding: 50px 0px;
