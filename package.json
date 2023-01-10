@@ -1,0 +1,26 @@
+{
+  "name": "spencer",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite dev",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.10",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^2.2.0",
+    "gh-pages": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.4.2",
+    "vite": "^3.2.4"
+  },
+  "packageManager": "yarn@3.2.4"
+}

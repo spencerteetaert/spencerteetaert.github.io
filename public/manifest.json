@@ -1,0 +1,16 @@
+{
+  "name": "Spencer Teetaert",
+  "short_name": "Spencer Teetaert",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/png",
+      "sizes": "any"
+    }
+  ],
+  "orientation": "portrait",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
