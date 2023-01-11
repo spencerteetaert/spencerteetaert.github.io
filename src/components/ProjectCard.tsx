@@ -15,16 +15,19 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
     const media = (
         <CardMedia image={project.bannerImg} sx={{ height: '180px', position: 'relative' }}>
-            <IconButton
-                href={project.repoUrl}
-                target="_blank"
-                sx={{
-                    bgcolor: 'white !important',
-                    position: 'absolute',
-                    m: 1, top: 0, right: 0,
-                }}>
-                <GitHub color='primary' />
-            </IconButton>
+            {
+                project.repoUrl ? 
+                <IconButton
+                    href={project.repoUrl}
+                    target="_blank"
+                    sx={{
+                        bgcolor: 'white !important',
+                        position: 'absolute',
+                        m: 1, top: 0, right: 0,
+                    }}>
+                    <GitHub color='primary' />
+                </IconButton> : null
+            }
         </CardMedia>
     );
 
