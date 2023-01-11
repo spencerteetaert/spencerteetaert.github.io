@@ -28,7 +28,7 @@ export const Banner = () => {
                         size='large'
                         sx={{ width: { xs: 1, sm: 'auto' } }}
                         variant='contained'
-                        href="/Spencer-Teetaert_Curriculum-Vitae.pdf"
+                        href="/cv.pdf"
                         download
                         target="_blank"
                         startIcon={<ArticleRounded />}

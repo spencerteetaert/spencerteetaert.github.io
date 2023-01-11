@@ -3,8 +3,8 @@ import caffeineImg from '@/assets/caffeine.jpg';
 import { Project } from '@/types';
 
 export const config = {
-    githubUrl: "", // TODO:
-    linkedInUrl: "", // TODO:
+    githubUrl: "https://github.com/spencerteetaert",
+    linkedInUrl: "https://www.linkedin.com/in/spencerteetaert/",
     emailAddress: "spencerteetaert@gmail.com",
 }
 
