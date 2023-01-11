@@ -9,13 +9,13 @@ export const config = {
 }
 
 // TODO: add projects
-export const projects: Project[] = [
+export const current_projects: Project[] = [
     {
         title: "SIM2REAL",
         bannerImg: sim2RealImg,
-        subTitle: "Learning based controller for a parallel continuum robot",
+        subTitle: "Pipeline for zero-shot sim to real transfer of drone controllers",
         repoUrl: "https://github.com/utiasDSL/safe-control-gym/tree/beta-iros-competition",
-        description: "A firmware wrapper for integrated simulation of real world flight controls for CrazyFlie2.0 drones enabling copy-paste controller implementation.",
+        description: "",
         sections: [
             {
                 header: "Background",
@@ -28,9 +28,36 @@ export const projects: Project[] = [
         ]
     },
     {
-        title: "Caffeine",
+        title: "Parallel Continuum Robot",
         bannerImg: caffeineImg,
-        repoUrl: "https://github.com/utiasDSL/safe-control-gym/tree/beta-iros-competition",
-        description: "A firmware wrapper for integrated simulation of real world flight controls for CrazyFlie2.0 drones enabling copy-paste controller implementation.",
+        subTitle: "Learning-Based Control for Tendon Driven Parallel Continuum Robot",
+        repoUrl: "https://github.com/spencerteetaert/pcr_control",
+        description: "",
+    },
+    {
+        title: "Inspection Drone",
+        subTitle: "Fourth year robotics capstone. More coming soon!",
+        repoUrl: "",
+        description: "",
     },
 ];
+
+export const past_projects: Project[] = [
+    {
+        title: "Caffeine",
+        bannerImg: caffeineImg,
+        repoUrl: "",
+        description: "",
+    },
+    {
+        title: "Industrial Robotics",
+        repoUrl: "",
+        description: "",
+    },
+    {
+        title: "Electric Charger Robot",
+        repoUrl: "",
+        description: "",
+    },
+];
+

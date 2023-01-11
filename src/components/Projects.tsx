@@ -1,5 +1,5 @@
 import { Typography, Box, Container, Grid } from '@mui/material'
-import { projects } from '@/config';
+import { past_projects, current_projects } from '@/config';
 import { ProjectCard } from './ProjectCard';
 
 export const Projects = () => {
@@ -13,9 +13,17 @@ export const Projects = () => {
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={2} variant='h6'>Projects</Typography>
+                <Typography mb={2} variant='h6'>Current Projects</Typography>
                 <Grid container spacing={4}>
-                    {projects.map(project => (
+                    {current_projects.map(project => (
+                        <Grid key={project.title} item xs={12} sm={6} md={4}>
+                            <ProjectCard project={project} />
+                        </Grid>
+                    ))}
+                </Grid>
+                <Typography mb={2} variant='h6'>Past Projects</Typography>
+                <Grid container spacing={4}>
+                    {past_projects.map(project => (
                         <Grid key={project.title} item xs={12} sm={6} md={4}>
                             <ProjectCard project={project} />
                         </Grid>
