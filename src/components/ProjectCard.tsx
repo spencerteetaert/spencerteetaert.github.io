@@ -1,5 +1,5 @@
 import {
-    Typography, IconButton, Card, CardActionArea, CardContent, CardMedia, Dialog, Box
+    Typography, IconButton, Card, CardActionArea, CardContent, CardMedia, Dialog, Box, ListItemText
 } from '@mui/material'
 import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
@@ -66,8 +66,23 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         <Typography color='text.secondary'>
                             {section.content}
                         </Typography>
+                        {section.image ? <CardMedia image={section.image} sx={{ height: '180px'}}/> : null}
                     </CardContent>
                 ))}
+                {
+                    project.publications ? <CardContent>
+                        <Typography variant='h6' sx={{ fontWeight: 600 }}>
+                            Publications
+                        </Typography>
+                        {project.publications?.map(publication => (
+                            <ListItemText>
+                                <Typography color='text.secondary'>
+                                    {publication}
+                                </Typography>
+                            </ListItemText>
+                        ))}
+                        </CardContent> : null
+                }
             </Dialog>
             <CardActionArea onClick={() => setOpen(true)}>
                 <Card>

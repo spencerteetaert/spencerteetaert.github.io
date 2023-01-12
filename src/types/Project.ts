@@ -7,5 +7,7 @@ export type Project = {
     sections?: {
         header: string
         content: string
+        image?: MediaImage
     }[]
+    publications?: string[]
 }
