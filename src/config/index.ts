@@ -1,4 +1,6 @@
 import sim2RealImg from '@/assets/sim2real.png';
+import sim2RealPipelineImg from '@/assets/sim2real_pipeline.png';
+import sim2RealComparisonImg from '@/assets/sim2real_flight_comparison.png';
 import caffeineImg from '@/assets/caffeine.jpg';
 import pcrImg from '@/assets/pcr.gif';
 import evChargerImg from '@/assets/ev_charger.jpg';
@@ -27,7 +29,7 @@ export const current_projects: Project[] = [
                     hardware is expensive to acquire and\
                     repair, and is subject to its fastest possible operation in\
                     real time. During training, a learning agent is expected to\
-                    fail often. On a platform such as Crazyflies, a failure can\
+                    fail often. On a quadcopter platform such as Crazyflies, a failure can\
                     at best slow down the training process as one must reset\
                     the drone, and at worst can cause damage. When factoring\
                     in additional inefficiencies such as limited battery life and\
@@ -41,9 +43,26 @@ export const current_projects: Project[] = [
                     and how it affects a control signal.",
             },
             {
-                header: "Project Solution",
-                content: "",
-                image: sim2RealImg,
+                header: "Project Description",
+                content: "A sim2real pipeline was developed to minimize the\
+                    differences between simulation and real world application,\
+                    enabling controllers designed entirely in simulation to fly on\
+                    flight hardware without the need for fine-tuning. The pipeline\
+                    consists of three parts:\
+                    (1) Pycffirmware: an extension of the CF firmware python\
+                    bindings.\
+                    (2) A firmware wrapper to interface between pycffirmware\
+                    and safe-control-gym.\
+                    (3) A module to execute controllers on flight hardware\
+                    using crazyswarm.",
+                image: sim2RealPipelineImg,
+            },
+            {
+                content: "We evaluated the sim2real pipeline on test trajectories.\
+                    Our pipeline achieved less than 5cm error on average between simulation and\
+                    real flight data throughout the duration of the flight for each of the \
+                    seven test trajectories.",
+                image: sim2RealComparisonImg,
             },
             
         ],
@@ -57,10 +76,20 @@ export const current_projects: Project[] = [
         bannerImg: pcrImg,
         repoUrl: "https://github.com/spencerteetaert/pcr_control",
         description: "Learning-Based Control for Tendon Driven Parallel Continuum Robot",
+        sections: [
+            {
+                content: "More coming soon!"
+            }
+        ]
     },
     {
         title: "Inspection Drone",
         description: "Autonomous drone for nuclear plant inspection. More coming soon!",
+        sections: [
+            {
+                content: "More coming soon!"
+            }
+        ]
     },
 ];
 
@@ -70,17 +99,32 @@ export const past_projects: Project[] = [
         bannerImg: caffeineImg,
         repoUrl: "https://github.com/UTRA-ART/Caffeine",
         description: "Fully autonomous rover that competes in IGVC",
+        sections: [
+            {
+                content: "More coming soon!"
+            }
+        ]
     },
     {
         title: "Electric Vehicle Charger Robot",
         bannerImg: evChargerImg,
         description: "Robot that autonomously plugs in your EV",
+        sections: [
+            {
+                content: "More coming soon!"
+            }
+        ]
     },
     {
         title: "Industrial Robotics",
         bannerImg: industrialRobotImg,
         repoUrl: "https://github.com/spencerteetaert/loin-feeder-robot",
         description: "Sensing and planning for custom industrial robot",
+        sections: [
+            {
+                content: "More coming soon!"
+            }
+        ]
     },
 ];
 

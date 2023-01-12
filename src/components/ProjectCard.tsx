@@ -66,7 +66,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         <Typography color='text.secondary'>
                             {section.content}
                         </Typography>
-                        {section.image ? <CardMedia image={section.image} sx={{ height: '180px'}}/> : null}
+                        {section.image ? <CardMedia image={section.image} sx={{paddingTop: "30%", objectFit: 'contain'}}/> : null}
                     </CardContent>
                 ))}
                 {

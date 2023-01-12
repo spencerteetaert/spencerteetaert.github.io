@@ -5,7 +5,7 @@ export type Project = {
     repoUrl?: string
     description: string
     sections?: {
-        header: string
+        header?: string
         content: string
         image?: MediaImage
     }[]
