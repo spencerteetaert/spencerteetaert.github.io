@@ -78,7 +78,8 @@ export const current_projects: Project[] = [
         description: "Learning-Based Control for Tendon Driven Parallel Continuum Robot",
         sections: [
             {
-                content: "More coming soon!"
+                content: "My undergraduate research thesis. My interim report will be made available here \
+                at the end of January 2023. Please see github page for more information."
             }
         ]
     },
@@ -87,7 +88,8 @@ export const current_projects: Project[] = [
         description: "Autonomous drone for nuclear plant inspection. More coming soon!",
         sections: [
             {
-                content: "More coming soon!"
+                content: "Project for my fourth year Robotics capstone course. Project runs \
+                from January - April 2023. More coming soon!"
             }
         ]
     },
@@ -101,7 +103,9 @@ export const past_projects: Project[] = [
         description: "Fully autonomous rover that competes in IGVC",
         sections: [
             {
-                content: "More coming soon!"
+                content: "I was the lead designer and project manager for UTRA's Autonomous \
+                Rover Team in the 2021-2022 school year. I brought the team back to competition \
+                for the first time in over 10 years! Please see github page for more information."
             }
         ]
     },
@@ -111,7 +115,9 @@ export const past_projects: Project[] = [
         description: "Robot that autonomously plugs in your EV",
         sections: [
             {
-                content: "More coming soon!"
+                content: "Project developed for the Praxis III engineering design course in \
+                winter semester of 2020. The project was cut short due to the covid shutdown. \
+                More info coming soon!"
             }
         ]
     },
@@ -122,7 +128,11 @@ export const past_projects: Project[] = [
         description: "Sensing and planning for custom industrial robot",
         sections: [
             {
-                content: "More coming soon!"
+                content: "I continued on the work of a mechanical engineering capstone team \
+                at a co-op that I did in the summer of 2019. I wrote the entire software control \
+                and sensing library for the robot that they designed. The project scope shifted \
+                and we never built the physical robot, but it did spark an automation project at \
+                the plant. Please see github page for more information."
             }
         ]
     },
