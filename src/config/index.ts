@@ -75,11 +75,17 @@ export const current_projects: Project[] = [
         title: "Parallel Continuum Robot",
         bannerImg: pcrImg,
         repoUrl: "https://github.com/spencerteetaert/pcr_control",
-        description: "Learning-Based Control for Tendon Driven Parallel Continuum Robot",
+        description: "Learning-Based Control for a Tendon Driven Parallel Continuum Robot",
         sections: [
             {
-                content: "My undergraduate research thesis. My interim report will be made available here \
-                at the end of January 2023. Please see github page for more information."
+                content: "My undergraduate research thesis. Please find the project's interim report linked below. The project began in September of \
+                2022 and will conclude in April of 2023, when the final thesis documentwill be posted here."
+            }
+        ],
+        links: [
+            {
+                link: 'Thesis_Interim_Report.pdf',
+                text: 'Thesis Interim Report'
             }
         ]
     },

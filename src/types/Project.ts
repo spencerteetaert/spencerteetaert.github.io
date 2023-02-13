@@ -10,4 +10,8 @@ export type Project = {
         image?: MediaImage
     }[]
     publications?: string[]
+    links?: {
+        link: string
+        text: string
+    }[]
 }

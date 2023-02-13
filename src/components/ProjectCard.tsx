@@ -1,5 +1,5 @@
 import {
-    Typography, IconButton, Card, CardActionArea, CardContent, CardMedia, Dialog, Box, ListItemText
+    Typography, IconButton, Card, CardActionArea, CardContent, CardMedia, Dialog, Box, ListItemText, Link
 } from '@mui/material'
 import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
@@ -58,7 +58,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         {project.description}
                     </Typography>
                 </CardContent>
-                {project.sections?.map(section => (
+                {
+                    project.sections?.map(section => (
                     <CardContent key={section.header}>
                         <Typography variant='h6' sx={{ fontWeight: 600 }}>
                             {section.header}
@@ -68,7 +69,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         </Typography>
                         {section.image ? <CardMedia image={section.image} sx={{paddingTop: "30%", objectFit: 'contain'}}/> : null}
                     </CardContent>
-                ))}
+                ))
+                }
                 {
                     project.publications ? <CardContent>
                         <Typography variant='h6' sx={{ fontWeight: 600 }}>
@@ -83,6 +85,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         ))}
                         </CardContent> : null
                 }
+                {
+                    project.links ? <CardContent>
+                        <Typography variant='h6' sx={{ fontWeight: 600 }}>
+                            Links
+                        </Typography>
+                        {project.links?.map(link => (
+                            <Link href={link.link}> {link.text} </Link>
+                        ))}
+                    </CardContent> : null
+                }
+
             </Dialog>
             <CardActionArea onClick={() => setOpen(true)}>
                 <Card>
