@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Container, Typography } from "@mui/material"
 import { Banner } from "@/components/Banner"
 import { Projects } from "@/components/Projects"
 import { Publications } from "@/components/Publications"
@@ -12,6 +12,9 @@ export const App = () => {
       </Container>
       <Projects />
       <Publications />
+      <Typography align="center" sx={{ py: 4, fontSize: '0.8em', color: 'text.secondary' }}>
+        Last updated: November 2025
+      </Typography>
     </AppThemeProvider>
   )
 }

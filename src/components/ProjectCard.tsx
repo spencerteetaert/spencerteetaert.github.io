@@ -5,7 +5,7 @@ import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
 import { useState } from 'react';
 import { PublicationItem, usePublications } from "@/components/Publications"
-import { formatIEEE } from '@/utils/bibParser'
+import { formatIEEE, getIEEEURL } from '@/utils/bibParser'
 import { useRef, useEffect } from 'react';
 
 export type ProjectCardProps = {
@@ -106,6 +106,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                                     return (
                                         <PublicationItem
                                             text={formatIEEE(pub)}
+                                            link={getIEEEURL(pub)}
                                             counter={publications.indexOf(pub) + 1}
                                         />
                                     );

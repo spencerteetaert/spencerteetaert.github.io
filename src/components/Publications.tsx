@@ -1,8 +1,8 @@
 import { Typography, Box, Container, List, ListItem } from '@mui/material'
-import { loadBibFile, BibEntry, formatIEEE } from '@/utils/bibParser'
+import { loadBibFile, BibEntry, formatIEEE, getIEEEURL } from '@/utils/bibParser'
 import { useState, useEffect } from 'react';
 
-export const PublicationItem = ({ text, counter = -1 }: { text: string, counter?: number }) => {
+export const PublicationItem = ({ text, link = '', counter = -1 }: { text: string, link: string, counter?: number }) => {
     return (
         <ListItem sx={{
             counterIncrement: counter === -1 ? 'ieee-counter' : 'none',
@@ -15,9 +15,12 @@ export const PublicationItem = ({ text, counter = -1 }: { text: string, counter?
                 pr: 2
             }
         }}>
-            <Typography>
-                {text}
-            </Typography>
+            {link ?
+                <Typography>
+                    {text} Available at: <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
+                </Typography> : <Typography>
+                    {text}
+                </Typography>}
         </ListItem>
     )
 }
@@ -32,7 +35,15 @@ export const usePublications = () => {
             try {
                 const bibEntries = await loadBibFile('/bib.bib');
                 // Sort by year descending (newest first)
-                const sortedEntries = bibEntries.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                const sortedEntries = bibEntries.sort((a, b) => {
+                    // Sort by type first (article before others)
+                    if (a.type !== b.type) {
+                        if (a.type === 'article') return -1;
+                        if (b.type === 'article') return 1;
+                    }
+                    // Then sort by year descending (newest first)
+                    return parseInt(b.year) - parseInt(a.year);
+                });
                 setPublications(sortedEntries);
                 setLoading(false);
             } catch (err) {
@@ -87,20 +98,37 @@ export const Publications = () => {
         <Box
             sx={{
                 py: 4,
-                mt: 4,
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={2} sx={{ fontSize: '2em', fontWeight: 300 }} >Publications</Typography>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Publications</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
                         .filter(pub => pub.type === 'article')
                         .map((pub, index) => (
                             <PublicationItem
                                 text={formatIEEE(pub)}
+                                link={getIEEEURL(pub)}
                                 counter={index + 1}
                             />
                         ))}
+                </List>
+            </Container>
+            <Container maxWidth='md' sx={{ mt: 4 }}>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Other Works</Typography>
+                <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
+                    {publications
+                        .filter(pub => pub.type !== 'article')
+                        .map((pub, index) => {
+                            const articleCount = publications.filter(p => p.type === 'article').length;
+                            return (
+                                <PublicationItem
+                                    text={formatIEEE(pub)}
+                                    link={getIEEEURL(pub)}
+                                    counter={articleCount + index + 1}
+                                />
+                            );
+                        })}
                 </List>
             </Container>
         </Box>

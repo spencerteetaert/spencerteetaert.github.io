@@ -6,7 +6,8 @@ import pcrImg from '@/assets/pcr.gif';
 import evChargerImg from '@/assets/ev_charger.png';
 import industrialRobotImg from '@/assets/industrial_robot.png';
 import spacetimeImg from '@/assets/spacetime.png';
-import { Project, BibItem } from '@/types';
+import capstoneImg from '@/assets/capstone.png';
+import { Project } from '@/types';
 
 export const config = {
     googleScholarUrl: "https://scholar.google.com/citations?user=i5a7uuoAAAAJ&hl=en&authuser=1",
@@ -41,7 +42,7 @@ export const current_projects: Project[] = [
 
 export const past_projects: Project[] = [
     {
-        title: "SIM2REAL",
+        title: "CrazyFlie Sim2Real",
         bannerImg: sim2RealImg,
         repoUrl: "https://github.com/utiasDSL/safe-control-gym/tree/beta-iros-competition",
         description: "Pipeline for zero-shot sim to real transfer of drone controllers",
@@ -69,7 +70,8 @@ export const past_projects: Project[] = [
         ]
     },
     {
-        title: "Inspection Drone",
+        title: "Custom Drone",
+        bannerImg: capstoneImg,
         description: "Autonomous drone for nuclear plant inspection.",
         sections: [
             {
