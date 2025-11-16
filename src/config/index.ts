@@ -73,7 +73,7 @@ export const past_projects: Project[] = [
         description: "Autonomous drone for nuclear plant inspection.",
         sections: [
             {
-                content: "Project for my fourth year Robotics capstone course. Project runs from January - April 2023."
+                content: "Project for my fourth year Robotics capstone course. Project ran from January - April 2023."
             }
         ]
     },
