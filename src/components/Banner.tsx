@@ -1,5 +1,5 @@
 import { Typography, Box, Divider, Button, Stack, Dialog, CardContent, IconButton } from '@mui/material'
-import { GitHub, LinkedIn, EmailRounded, ArticleRounded, ExpandMore, Close, Person } from '@mui/icons-material';
+import { GitHub, LinkedIn, EmailRounded, ArticleRounded, ExpandMore, Close, Person, School } from '@mui/icons-material';
 import { config } from '@/config';
 import { useState } from 'react';
 import portraitImg from '@/assets/portrait.jpg';
@@ -19,14 +19,14 @@ export const Banner = () => {
             >
                 <Box sx={{ width: { xs: 1, sm: 0.5 } }}>
                     <Typography variant='h1'>
-                        MAKING ROBOTS MOVE WITH LESS WORK
+                        Hi, I'm Spencer
                     </Typography>
                     <Typography sx={{ fontSize: '1.2em', my: 2 }}>
-                        I'm <b>Spencer Teetaert</b>, a student and robotics researcher
+                        A PhD student and robotics researcher at the University of Toronto
                     </Typography>
                     <Button
                         size='large'
-                        sx={{ width: { xs: 1, sm: 'auto' } }}
+                        sx={{ mt: 4, width: { xs: 1, sm: 'auto' } }}
                         variant='contained'
                         href="/cv.pdf"
                         download
@@ -51,6 +51,9 @@ export const Banner = () => {
                 </Box>
             </Box>
             <Stack mt={6} spacing={1} direction='row' sx={{ justifyContent: { xs: 'center', sm: 'start' } }}>
+                <Button href={config.googleScholarUrl} target="_blank" startIcon={<School />}>
+                    Google Scholar
+                </Button>
                 <Button href={config.githubUrl} target="_blank" startIcon={<GitHub />}>
                     GitHub
                 </Button>
@@ -63,8 +66,11 @@ export const Banner = () => {
             </Stack>
             <Divider sx={{ mb: 6, mt: 1 }} />
             <Box>
-                <Typography sx={{ fontSize: '1.5em', fontWeight: 100 }}>
-                    I work at the intersection of machine learning and control for robotic systems. My work has focused on developing tools that enable easy transfer from simulation to real world hardware for flying and continuum robots.
+                <Typography sx={{ fontSize: '2em', fontWeight: 300 }} >
+                    About me
+                </Typography>
+                <Typography sx={{ fontSize: '1.2em', fontWeight: 100 }}>
+                    I am a third year PhD student in the Autonomous Space Robotics Lab and the Continuum Robotics Lab at the University of Toronto, supervised jointly by Professors Timothy D. Barfoot and Jessica Burgner-Kahrs. My research currently focuses on continuous-time state estimation methods for continuum robots. My goal is to enable practical use of continuum robots in real world applications. 
                 </Typography>
                 <Box textAlign='center' my={4}>
                     <Button variant='outlined' startIcon={<Person />} endIcon={<ExpandMore />} onClick={() => setShowAbout(true)} size="large">
@@ -72,12 +78,12 @@ export const Banner = () => {
                     </Button>
                 </Box>
             </Box>
-            <Dialog fullWidth maxWidth='sm' open={showAbout} onClose={() => setShowAbout(false)}>
-                <img
+            <Dialog fullWidth maxWidth='md' open={showAbout} onClose={() => setShowAbout(false)}>
+                {/* <img
                     src={portraitImg}
                     alt="portrait"
                     style={{ width: '100%' }}
-                />
+                /> */}
                 <IconButton
                     onClick={() => setShowAbout(false)}
                     sx={{
@@ -85,7 +91,7 @@ export const Banner = () => {
                         top: 0,
                         right: 0,
                         m: 1,
-                        color: 'white',
+                        color: t => t.palette.primary.main,
                     }}
                 >
                     <Close />
@@ -93,25 +99,31 @@ export const Banner = () => {
                 <CardContent>
                     <Stack spacing={2}>
                         <Typography sx={{ fontWeight: 600 }}>
-                            My story
+                            Early life 
                         </Typography>
                         <Typography>
-                        I grew up in the small town of Steinbach, MB in a family of eight. From a young age, I got involved in every sport under the sun; soccer, basketball, track and field, cross country, volleyball, badminton, and handtis to name a few. I went on to continue playing volleyball competitively for 7 years, winning several provincial and national awards. While my competitive play stopped after high school graduation, I continue to play beach volleyball during the summers and intramural volleyball during the year to this day, and love every second of it.
+                            I grew up in the small town of Steinbach, MB, in a family of eight. From a young age, I got involved in every sport under the sun; soccer, basketball, track and field, cross country, volleyball, badminton, and handtis, to name a few. I went on to continue playing volleyball competitively for 7 years, winning several provincial and national titles. While my competitive play stopped after high school graduation, I continue to play recreationally to this day.
                         </Typography>
                         <Typography>
-                        I have picked up several instruments throughout the years including piano, clarinet, baritone saxophone, and vocals. I sang in provincial honour choirs, regional choirs, vocal jazz groups, and chamber choirs throughout my time in high school. Earlier I played saxophone in both concert and jazz bands.
+                            I have picked up several instruments throughout the years including piano, clarinet, baritone saxophone, and vocals. I sang in provincial honour choirs, regional choirs, vocal jazz groups, and chamber choirs throughout my time in high school. Earlier I played saxophone in both concert and jazz bands. 
+                        </Typography>
+                        <Typography sx={{ fontWeight: 600 }}>
+                            Undergraduate education
                         </Typography>
                         <Typography>
-                        I discovered the Engineering Science (EngSci) program at the University of Toronto while in pursuit of continuing my education. After making it into EngSci, I needed to define a new path outside of my small town. I joined design teams immediately and eventually end up as the head of the Robotics Association (UTRA) where I oversee four robotic design teams and two robotic outreach/learning initiatives with over 150 active members. We compete internationally in robotics competitions across the world.
+                            I started my formal education by obtaining a BASc in Engineering Science at the University of Toronto. Throughout my undergraduate, I joined intramural and design teams. I would eventually go on to lead the Robotics Association (UTRA) as the club president where I oversaw four design teams and two outreach/learning initiatives totalling over 150 active members. We competed internationally in robotics competitions across the world.
                         </Typography>
                         <Typography>
-                        After my third year, I took my Professional Experience Year (PEY) at Huawei Canada. I learned a lot as a machine learning researcher in their Human Machine Interactions (HMI) lab. While my specific work is covered under an NDA, I spent most of my time between literature reviews for new computer vision methods and designing experiments to try my own methods applied to HMI tasks.
+                            After my third year, I did a full year coop at Huawei Canada in the Human Machine Interaction (HMI) lab. There, I developed learning-based computer vision techniques for smart consumer devices including heads up displays and smart phones. My work aimed to improve user experience through enabling hands free control of devices.  
                         </Typography>
                         <Typography>
-                        I got my first taste of research in academia with Professor Angela Schoellig (Ph.D.) at the Dynamic Systems Lab at UTIAS. Working closely with Jacopo Panerati (Ph.D.) I developed sim2real for easy simulation to real translation of controllers designed for crazyflie drones. This work has continued into what will be my first academic authorship (coming soon). In September of 2022, I began work on my undergraduate thesis under Professor Burgner-Kahrs (Ph.D.) at the Continuum Robotics Lab.
+                            I began my research career under Professor Schoellig (PhD) at the Dynamic Systems Lab at UTIAS. Working closely with Jacopo Panerati (PhD) I developed sim2real for easy simulation to real translation of controllers designed for crazyflie drones. This work has continued into what will be my first academic authorship (coming soon). In September of 2022, I began work on my undergraduate thesis under Professor Burgner-Kahrs (PhD) at the Continuum Robotics Lab. 
+                        </Typography>
+                        <Typography sx={{ fontWeight: 600 }}>
+                            Graduate studies
                         </Typography>
                         <Typography>
-                        With a fast-approaching graduation date (April 2023) I am now looking at starting the next chapter of my life and am excited about the prospects of what comes next!
+                            I began my graduate studies as a MASc candidate at UTIAS under cosupervision of Professors Barfoot and Burgner-Kahrs. After a year of research, I transitioned into the PhD program where I continue my work on state estimation techniques for continuum robots. My research aims to enable practical use of continuum robots in real world applications, a goal I intend to pursue for the foreseeable future.
                         </Typography>
                     </Stack>
                 </CardContent>

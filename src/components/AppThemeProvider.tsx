@@ -5,10 +5,30 @@ type AppThemeProviderProps = {
     children: ReactNode
 }
 
+/**
+ * #292F36 - black 
+ * #4ECDC4 - teal
+ * #F7FFF7 - off-white
+ * #FF6B6B - coral
+ * #FFE66D - yellow
+ */
+
 export const AppThemeProvider = ({ children }: AppThemeProviderProps) => {
     const theme = createTheme({
         palette: {
-            primary: { main: '#000000' },
+            primary: {
+                main: '#292F36',
+                contrastText: '#F7FFF7',
+            },
+            secondary: {
+                main: '#003049',
+                contrastText: '#F7FFF7',
+            },
+            background: {
+                default: '#F7FFF7', // This sets the webpage background color
+                paper: '#F7FFF7'
+            },
+            
         },
         typography: {
             fontSize: 14,

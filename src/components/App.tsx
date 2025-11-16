@@ -1,6 +1,7 @@
 import { Container } from "@mui/material"
 import { Banner } from "@/components/Banner"
 import { Projects } from "@/components/Projects"
+import { Publications } from "@/components/Publications"
 import { AppThemeProvider } from "@/components/AppThemeProvider"
 
 export const App = () => {
@@ -10,6 +11,7 @@ export const App = () => {
         <Banner />
       </Container>
       <Projects />
+      <Publications />
     </AppThemeProvider>
   )
 }

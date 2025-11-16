@@ -6,14 +6,14 @@ export const Projects = () => {
     return (
         <Box
             sx={{
-                background: t => t.palette.primary.main,
-                color: t => t.palette.primary.contrastText,
+                background: t => t.palette.secondary.main,
+                color: t => t.palette.secondary.contrastText,
                 py: 4,
                 mt: 8,
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={2} variant='h6'>Current Projects</Typography>
+                <Typography mb={2} sx={{ fontSize: '2em', fontWeight: 300 }} >Current Projects</Typography>
                 <Grid container spacing={4}>
                     {current_projects.map(project => (
                         <Grid key={project.title} item xs={12} sm={6} md={4}>
@@ -21,7 +21,7 @@ export const Projects = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Typography mb={2} variant='h6'>Past Projects</Typography>
+                <Typography mb={2} mt={4} sx={{ fontSize: '2em', fontWeight: 300 }} >Past Projects</Typography>
                 <Grid container spacing={4}>
                     {past_projects.map(project => (
                         <Grid key={project.title} item xs={12} sm={6} md={4}>
