@@ -1,13 +1,13 @@
 export type Project = {
     title: string
-    subTitle?: string
+    dates?: string
     bannerImg?: string
     repoUrl?: string
     description: string
     sections?: {
         header?: string
         content: string
-        image?: MediaImage
+        image?: string
     }[]
     publications?: string[]
     links?: {

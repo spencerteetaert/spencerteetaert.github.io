@@ -1,12 +1,11 @@
 import {
-    Typography, IconButton, Card, CardActionArea, CardContent, CardMedia, Dialog, Box, List, Link
+    Typography, IconButton, Card, CardActionArea, CardContent, Dialog, Box, List, Link
 } from '@mui/material'
 import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
 import { useState } from 'react';
 import { PublicationItem, usePublications } from "@/components/Publications"
 import { formatIEEE, getIEEEURL } from '@/utils/bibParser'
-import { useRef, useEffect } from 'react';
 
 export type ProjectCardProps = {
     project: Project
@@ -14,51 +13,20 @@ export type ProjectCardProps = {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
     const [open, setOpen] = useState(false);
-
-    const cardRef = useRef<HTMLDivElement>(null);
-    const [cardWidth, setCardWidth] = useState(0);
-
-    useEffect(() => {
-        const updateWidth = () => {
-            if (cardRef.current) {
-                setCardWidth(cardRef.current.offsetWidth);
-            }
-        };
-
-        updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return () => window.removeEventListener('resize', updateWidth);
-    }, []);
-
-    const aspectRatio = 4 / 3; // Change this to your desired aspect ratio
-    const calculatedHeight = cardWidth / aspectRatio;
-
-    const media = (
-        <CardMedia ref={cardRef} image={project.bannerImg} sx={project.bannerImg ? { height: calculatedHeight, position: 'relative' } : {}}>
-            {
-                project.repoUrl ?
-                    <IconButton
-                        href={project.repoUrl}
-                        target="_blank"
-                        sx={{
-                            bgcolor: t => t.palette.primary.contrastText,
-                            position: 'absolute',
-                            m: 1, top: 5, right: 5,
-                        }}>
-                        <GitHub color='primary' />
-                    </IconButton> : null
-            }
-        </CardMedia>
-    );
-
     const { publications, loading, error } = usePublications();
 
     return (
         <>
-            <Dialog fullWidth maxWidth='md' open={open} onClose={() => setOpen(false)}>
-                {media}
-
-                <CardContent>
+            <Dialog fullWidth maxWidth='sm' open={open} onClose={() => setOpen(false)}>
+                <Box sx={{ width: '100%' }}>
+                    <img
+                        src={project.bannerImg}
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            display: 'block'
+                        }}
+                    />
                     <IconButton
                         onClick={() => setOpen(false)}
                         sx={{
@@ -68,17 +36,30 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         }}>
                         <ArrowBack />
                     </IconButton>
-                    <Box mb={2}>
+
+                    {project.repoUrl ? (
+                        <IconButton
+                            href={project.repoUrl}
+                            target="_blank"
+                            sx={{
+                                bgcolor: t => t.palette.primary.contrastText,
+                                position: 'absolute',
+                                m: 1, top: 5, right: 5,
+                            }}>
+                            <GitHub color='primary' />
+                        </IconButton>
+                    ) : null}
+                </Box>
+
+                <CardContent>
+                    <Box>
                         <Typography variant='h5' sx={{ fontWeight: 600 }}>
                             {project.title}
                         </Typography>
-                        <Typography variant='caption' mb={2}>
-                            {project.subTitle}
+                        <Typography color='text.secondary'>
+                            {project.dates}
                         </Typography>
                     </Box>
-                    <Typography color='text.secondary'>
-                        {project.description}
-                    </Typography>
                 </CardContent>
                 {
                     project.sections?.map(section => (
@@ -89,7 +70,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                             <Typography color='text.secondary'>
                                 {section.content}
                             </Typography>
-                            {section.image ? <CardMedia image={section.image.toString()} sx={{ paddingTop: "30%", objectFit: 'contain' }} /> : null}
+                            {section.image ?
+                                <Box sx={{ width: '100%', mt: 2 }}>
+                                    <img
+                                        src={section.image}
+                                        alt={section.header}
+                                        style={{
+                                            width: '100%',
+                                            height: 'auto',
+                                            display: 'block'
+                                        }}
+                                    />
+                                </Box> : null}
                         </CardContent>
                     ))
                 }
@@ -105,6 +97,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                                     if (!pub) return null;
                                     return (
                                         <PublicationItem
+                                            key={publication}
                                             text={formatIEEE(pub)}
                                             link={getIEEEURL(pub)}
                                             counter={publications.indexOf(pub) + 1}
@@ -119,16 +112,38 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         <Typography variant='h6' sx={{ fontWeight: 600 }}>
                             Links
                         </Typography>
-                        {project.links?.map(link => (
-                            <Link href={link.link}> {link.text} </Link>
+                        {project.links?.map((link, index) => (
+                            <Link key={index} href={link.link} target="_blank" rel="noopener noreferrer"> {link.text} </Link>
                         ))}
                     </CardContent> : null
                 }
-
             </Dialog>
+
             <CardActionArea onClick={() => setOpen(true)}>
                 <Card>
-                    {media}
+                    <Box sx={{ width: '100%' }}>
+                        <img
+                            src={project.bannerImg}
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                display: 'block'
+                            }}
+                        />
+                        {project.repoUrl ? (
+                            <IconButton
+                                href={project.repoUrl}
+                                target="_blank"
+                                sx={{
+                                    bgcolor: t => t.palette.primary.contrastText,
+                                    position: 'absolute',
+                                    m: 1, top: 5, right: 5,
+                                }}>
+                                <GitHub color='primary' />
+                            </IconButton>
+                        ) : null}
+                    </Box>
+
                     <CardContent>
                         <Typography variant='h5' sx={{ fontWeight: 600 }} mb={2}>{project.title}</Typography>
                         <Typography

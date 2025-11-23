@@ -2,7 +2,6 @@ import { Typography, Box, Divider, Button, Stack, Dialog, CardContent, IconButto
 import { GitHub, LinkedIn, EmailRounded, ArticleRounded, ExpandMore, Close, Person, School } from '@mui/icons-material';
 import { config } from '@/config';
 import { useState } from 'react';
-import portraitImg from '@/assets/portrait.jpg';
 
 export const Banner = () => {
     const [showAbout, setShowAbout] = useState(false);
@@ -38,7 +37,7 @@ export const Banner = () => {
                 </Box>
                 <Box sx={{ flex: 1, textAlign: 'center' }}>
                     <img
-                        src={portraitImg}
+                        src={"images/portrait.jpg"}
                         alt="portrait"
                         style={{
                             width: '90%',

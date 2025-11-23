@@ -84,6 +84,9 @@ export function formatIEEE(entry: BibEntry): string {
     if (entry.publisher) {
       formatted += `, ${entry.publisher}`;
     }
+  } else 
+  {
+    formatted += `, ${entry.year}`;
   }
   
   if (entry.note) {
