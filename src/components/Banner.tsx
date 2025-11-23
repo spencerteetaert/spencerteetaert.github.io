@@ -71,18 +71,13 @@ export const Banner = () => {
                 <Typography sx={{ fontSize: '1.2em', fontWeight: 100 }}>
                     I am a third year PhD student in the Autonomous Space Robotics Lab and the Continuum Robotics Lab at the University of Toronto, supervised jointly by Professors Timothy D. Barfoot and Jessica Burgner-Kahrs. My research currently focuses on continuous-time state estimation methods for continuum robots. My goal is to enable practical use of continuum robots in real world applications. 
                 </Typography>
-                <Box textAlign='center' my={4}>
+                {/* <Box textAlign='center' my={4}>
                     <Button variant='outlined' startIcon={<Person />} endIcon={<ExpandMore />} onClick={() => setShowAbout(true)} size="large">
                         My story
                     </Button>
-                </Box>
+                </Box> */}
             </Box>
-            <Dialog fullWidth maxWidth='md' open={showAbout} onClose={() => setShowAbout(false)}>
-                {/* <img
-                    src={portraitImg}
-                    alt="portrait"
-                    style={{ width: '100%' }}
-                /> */}
+            {/* <Dialog fullWidth maxWidth='md' open={showAbout} onClose={() => setShowAbout(false)}>
                 <IconButton
                     onClick={() => setShowAbout(false)}
                     sx={{
@@ -126,7 +121,7 @@ export const Banner = () => {
                         </Typography>
                     </Stack>
                 </CardContent>
-            </Dialog>
+            </Dialog> */}
         </div >
     )
 }
