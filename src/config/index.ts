@@ -4,7 +4,7 @@ export const config = {
     googleScholarUrl: "https://scholar.google.com/citations?user=i5a7uuoAAAAJ&hl=en&authuser=1",
     githubUrl: "https://github.com/spencerteetaert",
     linkedInUrl: "https://www.linkedin.com/in/spencerteetaert/",
-    emailAddress: "spencer[dot]teetaert[at]robotics[dot]utias[dot]utoronto[dot]com",
+    emailAddress: "spencer [dot] teetaert [at] robotics [dot] utias [dot] utoronto [dot] com",
 }
 
 // TODO: add projects

@@ -9,18 +9,22 @@ export const PublicationItem = ({ text, link = '', counter = -1 }: { text: strin
             counterSet: counter === -1 ? undefined : `ieee-counter ${counter}`,
             textIndent: 0,
             '&::before': {
-                content: counter === -1 ? '"[" counter(ieee-counter) "]"' : `"[${counter}]"`,
-                textAlign: 'left',
-                verticalAlign: 'top',
-                pr: 2
+            content: counter === -1 ? '"[" counter(ieee-counter) "]"' : `"[${counter}]"`,
+            textAlign: 'left',
+            verticalAlign: 'top',
+            pr: 2
             }
         }}>
             {link ?
-                <Typography>
-                    {text} Available at: <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
-                </Typography> : <Typography>
-                    {text}
-                </Typography>}
+            <Typography>
+                {text.split('S. Teetaert').map((part, index) => (
+                index === 0 ? part : <><strong>S. Teetaert</strong>{part}</>
+                ))} Available at: <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
+            </Typography> : <Typography>
+                {text.split('S. Teetaert').map((part, index) => (
+                index === 0 ? part : <><strong>S. Teetaert</strong>{part}</>
+                ))}
+            </Typography>}
         </ListItem>
     )
 }
