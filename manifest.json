@@ -3,7 +3,7 @@
   "short_name": "Spencer Teetaert",
   "icons": [
     {
-      "src": "logo.svg",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "any"
     }
