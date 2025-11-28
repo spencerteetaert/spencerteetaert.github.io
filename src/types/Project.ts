@@ -3,7 +3,7 @@ export type Project = {
     dates?: string
     bannerImg?: string
     repoUrl?: string
-    description: string
+    description?: string
     sections?: {
         header?: string
         content: string

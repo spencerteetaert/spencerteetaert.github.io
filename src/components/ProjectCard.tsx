@@ -56,17 +56,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         <Typography variant='h5' sx={{ fontWeight: 600 }}>
                             {project.title}
                         </Typography>
-                        <Typography color='text.secondary'>
+                        {project.dates ? <Typography color='text.secondary'>
                             {project.dates}
-                        </Typography>
+                        </Typography> : null}
                     </Box>
                 </CardContent>
                 {
                     project.sections?.map(section => (
-                        <CardContent key={section.header}>
-                            <Typography variant='h6' sx={{ fontWeight: 600 }}>
+                        <CardContent>
+                            {section.header ? <Typography variant='h6' sx={{ fontWeight: 600 }}>
                                 {section.header}
-                            </Typography>
+                            </Typography> : null}
                             <Typography color='text.secondary'>
                                 {section.content}
                             </Typography>
@@ -108,14 +108,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         </CardContent> : null
                 }
                 {
-                    project.links ? <CardContent>
+                    project.links? <CardContent>
                         <Typography variant='h6' sx={{ fontWeight: 600 }}>
                             Links
                         </Typography>
                         {project.links?.map((link, index) => (
-                            <Link key={index} href={link.link} target="_blank" rel="noopener noreferrer"> {link.text} </Link>
+                            <Box key={index}>
+                                <Link href={link.link} target="_blank" rel="noopener noreferrer">
+                                    {link.text}
+                                </Link>
+                            </Box>
                         ))}
-                    </CardContent> : null
+                    </CardContent>: null
                 }
             </Dialog>
 

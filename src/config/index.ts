@@ -7,7 +7,6 @@ export const config = {
     emailAddress: "spencer [dot] teetaert [at] robotics [dot] utias [dot] utoronto [dot] com",
 }
 
-// TODO: add projects
 export const current_projects: Project[] = [
     {
         title: "Continuous-Time State Estimation for Continuum Robots",
@@ -28,6 +27,16 @@ export const current_projects: Project[] = [
             'Teetaert2025c',
             'Teetaert2025b',
             'Teetaert2024'
+        ],
+        links: [
+            {
+                link: 'https://arxiv.org/src/2510.01381v1/anc/video.mp4',
+                text: 'Batch estimation demo video'
+            },
+            {
+                link: 'https://arxiv.org/src/2510.26623v1/anc/results_video.mp4',
+                text: 'Sliding window estimation demo video'
+            }
         ]
     }
 ];
@@ -92,6 +101,24 @@ export const past_projects: Project[] = [
             'Teetaert2023',
             'Teetaert2023_workshop',
             'Teetaert2022_competition'
+        ],
+        links: [
+            {
+                link: 'https://www.youtube.com/watch?v=PwphA_jsNKw',
+                text: 'Sim2real demonstation video'
+            },
+            {
+                link: 'https://www.dynsyslab.org/iros-2022-safe-robot-learning-competition/',
+                text: 'Competition webpage'
+            },
+            {
+                link: 'https://www.youtube.com/watch?v=C6PZYJ5R1MI',
+                text: 'IROS 2022 competition winning flights'
+            },
+            {
+                link: 'https://youtu.be/UYdkRnGr8eM?t=15230', 
+                text: 'CDC 2023 workshop presentation'
+            }
         ]
     },
     {
