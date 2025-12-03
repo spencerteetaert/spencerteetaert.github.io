@@ -3,6 +3,13 @@ import { GitHub, LinkedIn, EmailRounded, ArticleRounded, ExpandMore, Close, Pers
 import { config } from '@/config';
 import { useState } from 'react';
 
+// Utility function to convert obfuscated email to actual email
+const deobfuscateEmail = (obfuscatedEmail: string): string => {
+    return obfuscatedEmail
+        .replace(/\s*\[dot\]\s*/g, '.')
+        .replace(/\s*\[at\]\s*/g, '@');
+};
+
 export const Banner = () => {
     const [showAbout, setShowAbout] = useState(false);
 
@@ -59,7 +66,7 @@ export const Banner = () => {
                 <Button href={config.linkedInUrl} target="_blank" startIcon={<LinkedIn sx={{ color: '#4675AA' }} />}>
                     LinkedIn
                 </Button>
-                <Button href={'mailto:' + encodeURIComponent(config.emailAddress)} target="_blank" startIcon={<EmailRounded />}>
+                <Button href={'mailto:' + encodeURIComponent(deobfuscateEmail(config.emailAddress))} target="_blank" startIcon={<EmailRounded />}>
                     Email
                 </Button>
             </Stack>
