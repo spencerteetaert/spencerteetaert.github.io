@@ -44,13 +44,13 @@ export const Banner = () => {
                 </Box>
                 <Box sx={{ flex: 1, textAlign: 'center' }}>
                     <img
-                        src={"images/portrait.jpg"}
+                        src={"images/portrait.png"}
                         alt="portrait"
                         style={{
                             width: '90%',
                             borderTopLeftRadius: '60%',
                             borderBottomLeftRadius: '50%',
-                            borderBottomRightRadius: '70%',
+                            borderBottomRightRadius: '60%',
                             borderTopRightRadius: '50%',
                         }}
                     />

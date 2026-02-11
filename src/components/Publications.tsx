@@ -3,6 +3,7 @@ import { loadBibFile, BibEntry, formatIEEE, getIEEEURL } from '@/utils/bibParser
 import { useState, useEffect } from 'react';
 
 export const PublicationItem = ({ text, link = '', counter = -1 }: { text: string, link: string, counter?: number }) => {
+    const names = ['S. Teetaert', 'S. Teetaert*', 'Co-organizer']
     return (
         <ListItem sx={{
             counterIncrement: counter === -1 ? 'ieee-counter' : 'none',
@@ -15,16 +16,23 @@ export const PublicationItem = ({ text, link = '', counter = -1 }: { text: strin
             pr: 2
             }
         }}>
-            {link ?
             <Typography>
-                {text.split('S. Teetaert').map((part, index) => (
-                index === 0 ? part : <><strong>S. Teetaert</strong>{part}</>
-                ))} Available at: <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
-            </Typography> : <Typography>
-                {text.split('S. Teetaert').map((part, index) => (
-                index === 0 ? part : <><strong>S. Teetaert</strong>{part}</>
-                ))}
-            </Typography>}
+            {/* Helper function or direct logic to highlight multiple names */}
+            {(() => {
+                // Create a regex pattern that matches any of the names
+                const pattern = new RegExp(`(${names.map(name => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+                const parts = text.split(pattern);
+
+                return (
+                <>
+                    {parts.map((part, index) =>
+                    names.includes(part) ? <strong key={index}>{part}</strong> : part
+                    )}
+                    {link && <> Available at: <a href={link} target="_blank" rel="noopener noreferrer">{link}</a></>}
+                </>
+                );
+            })()}
+            </Typography>
         </ListItem>
     )
 }
@@ -40,12 +48,6 @@ export const usePublications = () => {
                 const bibEntries = await loadBibFile('/bib.bib');
                 // Sort by year descending (newest first)
                 const sortedEntries = bibEntries.sort((a, b) => {
-                    // Sort by type first (article before others)
-                    if (a.type !== b.type) {
-                        if (a.type === 'article') return -1;
-                        if (b.type === 'article') return 1;
-                    }
-                    // Then sort by year descending (newest first)
                     return parseInt(b.year) - parseInt(a.year);
                 });
                 setPublications(sortedEntries);
@@ -108,7 +110,7 @@ export const Publications = () => {
                 <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Publications</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
-                        .filter(pub => pub.type === 'article')
+                        .filter(pub => pub.type === 'article' || pub.type === 'inproceedings')
                         .map((pub, index) => (
                             <PublicationItem
                                 text={formatIEEE(pub)}
@@ -119,12 +121,29 @@ export const Publications = () => {
                 </List>
             </Container>
             <Container maxWidth='md' sx={{ mt: 4 }}>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Workshops and Posters</Typography>
+                <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
+                    {publications
+                        .filter(pub => pub.type === 'misc')
+                        .map((pub, index) => {
+                            const articleCount = publications.filter(p => p.type === 'article' || p.type === 'inproceedings').length;
+                            return (
+                                <PublicationItem
+                                    text={formatIEEE(pub)}
+                                    link={getIEEEURL(pub)}
+                                    counter={articleCount + index + 1}
+                                />
+                            );
+                        })}
+                </List>
+            </Container>
+            <Container maxWidth='md' sx={{ mt: 4 }}>
                 <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Other Works</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
-                        .filter(pub => pub.type !== 'article')
+                        .filter(pub => pub.type === 'unpublished')
                         .map((pub, index) => {
-                            const articleCount = publications.filter(p => p.type === 'article').length;
+                            const articleCount = publications.filter(p => p.type === 'article' || p.type === 'inproceedings').length;
                             return (
                                 <PublicationItem
                                     text={formatIEEE(pub)}
