@@ -8,7 +8,7 @@ type AppThemeProviderProps = {
 /**
  * #292F36 - black 
  * #4ECDC4 - teal
- * #F7FFF7 - off-white
+ * #FFFEF9 - off-white
  * #FF6B6B - coral
  * #FFE66D - yellow
  */
@@ -18,15 +18,15 @@ export const AppThemeProvider = ({ children }: AppThemeProviderProps) => {
         palette: {
             primary: {
                 main: '#292F36',
-                contrastText: '#F7FFF7',
+                contrastText: '#FFFEF9',
             },
             secondary: {
                 main: '#003049',
-                contrastText: '#F7FFF7',
+                contrastText: '#FFFEF9',
             },
             background: {
-                default: '#F7FFF7', // This sets the webpage background color
-                paper: '#F7FFF7'
+                default: '#FFFEF9', // This sets the webpage background color
+                paper: '#FFFEF9'
             },
             
         },
