@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [
         react()
     ],
+    define: {
+        '__APP_VERSION__': JSON.stringify(new Date().getTime().toString())
+    },
     server: {
         host: true,
         open: true,

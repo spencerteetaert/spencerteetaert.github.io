@@ -154,9 +154,11 @@ function formatAuthors(authorString: string): string {
 
 export async function loadBibFile(path: string): Promise<BibEntry[]> {
   try {
-    const response = await fetch(path);
+    const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : Date.now().toString();
+    const response = await fetch(`${path}?v=${version}`);
     const content = await response.text();
     return parseBibFile(content);
+
   } catch (error) {
     console.error('Error loading BibTeX file:', error);
     return [];
