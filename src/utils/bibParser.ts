@@ -15,6 +15,8 @@ export interface BibEntry {
   note?: string;
   doi?: string;
   eprint?: string;
+  pubstate?: string;
+  index?: number;
 }
 
 export function parseBibFile(bibContent: string): BibEntry[] {
@@ -35,6 +37,7 @@ export function parseBibFile(bibContent: string): BibEntry[] {
       note: cleanBibField(entry.entryTags?.note || ''),
       doi: entry.entryTags?.doi || '',
       eprint: entry.entryTags?.eprint || '',
+      pubstate: entry.entryTags?.pubstate || ''
     }));
   } catch (error) {
     console.error('Error parsing BibTeX:', error);

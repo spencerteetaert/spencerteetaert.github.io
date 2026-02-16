@@ -117,9 +117,9 @@ export const past_projects: Project[] = [
         ],
         publications: [
             'Teetaert2025a',
-            'Teetaert2023',
-            'Teetaert2023_workshop',
-            'Teetaert2022_competition'
+            'Teetaert2023a',
+            'Teetaert2023b',
+            'Teetaert2022'
         ],
         links: [
             {

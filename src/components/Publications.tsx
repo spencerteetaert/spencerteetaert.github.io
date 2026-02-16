@@ -50,6 +50,41 @@ export const usePublications = () => {
                 const sortedEntries = bibEntries.sort((a, b) => {
                     return parseInt(b.year) - parseInt(a.year);
                 });
+
+                // Assign indices based on type grouping
+                let currentIndex = 1;
+
+                // 1. Articles
+                sortedEntries.forEach(entry => {
+                    if (entry.type === 'article') {
+                        entry.index = currentIndex++;
+                    }
+                });
+
+                // 2. Conference Papers
+                sortedEntries.forEach(entry => {
+                    if (entry.type === 'inproceedings' || entry.type === 'conference') {
+                        entry.index = currentIndex++;
+                    }
+                });
+
+                // 3. Preprints/Misc
+                sortedEntries.forEach(entry => {
+                    if (entry.type === 'misc') {
+                        entry.index = currentIndex++;
+                    }
+                });
+                
+                // 4. Any other types (fallback)
+                sortedEntries.forEach(entry => {
+                    if (entry.type !== 'article' && 
+                        entry.type !== 'inproceedings' && 
+                        entry.type !== 'conference' && 
+                        entry.type !== 'misc') {
+                        entry.index = currentIndex++;
+                    }
+                });
+
                 setPublications(sortedEntries);
                 setLoading(false);
             } catch (err) {
@@ -107,51 +142,63 @@ export const Publications = () => {
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Publications</Typography>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Peer-Reviewed Journal Articles</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
-                        .filter(pub => pub.type === 'article' || pub.type === 'inproceedings')
-                        .map((pub, index) => (
+                        .filter(pub => pub.type === 'article')
+                        .map((pub) => (
                             <PublicationItem
+                                key={pub.key}
                                 text={formatIEEE(pub)}
                                 link={getIEEEURL(pub)}
-                                counter={index + 1}
+                                counter={pub.index}
                             />
                         ))}
                 </List>
             </Container>
             <Container maxWidth='md' sx={{ mt: 4 }}>
-                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Workshops and Posters</Typography>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Conference Papers</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
-                        .filter(pub => pub.type === 'misc')
-                        .map((pub, index) => {
-                            const articleCount = publications.filter(p => p.type === 'article' || p.type === 'inproceedings').length;
-                            return (
-                                <PublicationItem
-                                    text={formatIEEE(pub)}
-                                    link={getIEEEURL(pub)}
-                                    counter={articleCount + index + 1}
-                                />
-                            );
-                        })}
+                        .filter(pub => pub.type === 'inproceedings' || pub.type === 'conference')
+                        .map((pub) => (
+                            <PublicationItem
+                                key={pub.key}
+                                text={formatIEEE(pub)}
+                                link={getIEEEURL(pub)}
+                                counter={pub.index}
+                            />
+                        ))}
                 </List>
             </Container>
             <Container maxWidth='md' sx={{ mt: 4 }}>
-                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Other Works</Typography>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Preprints</Typography>
+                <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
+                    {publications
+                        .filter(pub => pub.type === 'misc')
+                        .map((pub) => (
+                            <PublicationItem
+                                key={pub.key}
+                                text={formatIEEE(pub)}
+                                link={getIEEEURL(pub)}
+                                counter={pub.index}
+                            />
+                        ))}
+                </List>
+            </Container>
+            <Container maxWidth='md' sx={{ mt: 4 }}>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Other (Poster Presentations, Workshops, etc.)</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
                         .filter(pub => pub.type === 'unpublished')
-                        .map((pub, index) => {
-                            const articleCount = publications.filter(p => p.type === 'article' || p.type === 'inproceedings').length;
-                            return (
-                                <PublicationItem
-                                    text={formatIEEE(pub)}
-                                    link={getIEEEURL(pub)}
-                                    counter={articleCount + index + 1}
-                                />
-                            );
-                        })}
+                        .map((pub) => (
+                            <PublicationItem
+                                key={pub.key}
+                                text={formatIEEE(pub)}
+                                link={getIEEEURL(pub)}
+                                counter={pub.index}
+                            />
+                        ))}
                 </List>
             </Container>
         </Box>

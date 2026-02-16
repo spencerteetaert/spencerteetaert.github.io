@@ -89,7 +89,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     project.publications ?
                         <CardContent>
                             <Typography variant='h6' sx={{ fontWeight: 600 }}>
-                                Publications
+                                References
                             </Typography>
                             <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                                 {project.publications?.map(publication => {
@@ -100,7 +100,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                                             key={publication}
                                             text={formatIEEE(pub)}
                                             link={getIEEEURL(pub)}
-                                            counter={publications.indexOf(pub) + 1}
+                                            counter={pub.index}
                                         />
                                     );
                                 })}
