@@ -144,8 +144,8 @@ function formatAuthors(authorString: string): string {
     return formattedAuthors[0];
   } else if (formattedAuthors.length === 2) {
     return `${formattedAuthors[0]} and ${formattedAuthors[1]}`;
-  } else if (formattedAuthors.length >= 5) {
-    return `${formattedAuthors[0]} et al.`;
+  // } else if (formattedAuthors.length >= 5) {
+  //   return `${formattedAuthors[0]} et al.`;
   } else {
     const lastAuthor = formattedAuthors.pop();
     return `${formattedAuthors.join(', ')}, and ${lastAuthor}`;
