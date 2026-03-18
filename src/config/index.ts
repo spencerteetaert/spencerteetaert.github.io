@@ -50,6 +50,7 @@ export const current_projects: Project[] = [
         title: "Continuous-Time State Estimation for Continuum Robots",
         dates: "September 2023 - Present",
         bannerImg: "images/spacetime.png",
+        repoUrl: "https://github.com/utiasASRL/space_time_continuum",
         description: "PhD research on continuous-time state estimation methods for continuum robots.",
         sections: [
             {
