@@ -6,6 +6,7 @@ export interface BibEntry {
   title: string;
   author: string;
   year: string;
+  month?: string;
   journal?: string;
   booktitle?: string;
   volume?: string;
@@ -28,6 +29,7 @@ export function parseBibFile(bibContent: string): BibEntry[] {
       title: cleanBibField(entry.entryTags?.title || ''),
       author: cleanBibField(entry.entryTags?.author || ''),
       year: entry.entryTags?.year || '',
+      month: entry.entryTags?.month || '',
       journal: cleanBibField(entry.entryTags?.journal || ''),
       booktitle: cleanBibField(entry.entryTags?.booktitle || ''),
       volume: entry.entryTags?.volume || '',
@@ -53,45 +55,60 @@ function cleanBibField(field: string): string {
     .trim();
 }
 
+function formatMonth(month: string): string {
+  const monthMap: { [key: string]: string } = {
+    '1': 'Jan.',
+    '2': 'Feb.',
+    '3': 'Mar.',
+    '4': 'Apr.',
+    '5': 'May',
+    '6': 'Jun.',
+    '7': 'Jul.',
+    '8': 'Aug.',
+    '9': 'Sep.',
+    '10': 'Oct.',
+    '11': 'Nov.',
+    '12': 'Dec.'
+  };
+  return monthMap[month] || month;
+}
+
 export function formatIEEE(entry: BibEntry): string {
   const authors = formatAuthors(entry.author);
   const title = `"${entry.title}"`;
   
   let formatted = `${authors}, ${title}`;
   
-  if (entry.type === 'article') {
-    if (entry.journal) {
-      formatted += `, ${entry.journal}`;
-    }
-    if (entry.volume) {
-      formatted += `, vol. ${entry.volume}`;
-    }
-    if (entry.number) {
-      formatted += `, no. ${entry.number}`;
-    }
-    if (entry.pages) {
-      formatted += `, pp. ${entry.pages}`;
-    }
-    formatted += `, ${entry.year}`;
-    if (entry.doi) {
-      formatted += `, doi: ${entry.doi}`;
-    }
-  } else if (entry.type === 'inproceedings' || entry.type === 'conference') {
-    if (entry.booktitle) {
-      formatted += `, in ${entry.booktitle}`;
-    }
-    if (entry.pages) {
-      formatted += `, pp. ${entry.pages}`;
-    }
-    formatted += `, ${entry.year}`;
-    if (entry.publisher) {
-      formatted += `, ${entry.publisher}`;
-    }
-  } else 
-  {
+  if (entry.journal && entry.type === 'article') {
+    formatted += `, ${entry.journal}`;
+  }
+  if (entry.booktitle && (entry.type === 'inproceedings' || entry.type === 'conference')) {
+    formatted += `, ${entry.booktitle}`;
+  }
+  if (entry.volume && entry.type === 'article') {
+    formatted += `, vol. ${entry.volume}`;
+  }
+  if (entry.number && entry.type === 'article') {
+    formatted += `, no. ${entry.number}`;
+  }
+  if (entry.pages) {
+    formatted += `, pp. ${entry.pages}`;
+  }
+  if (entry.month) {
+    formatted += `, ${formatMonth(entry.month)} ${entry.year}`;
+  }
+  else {
     formatted += `, ${entry.year}`;
   }
-  
+  if (entry.publisher) {
+    formatted += `, ${entry.publisher}`;
+  }
+  if (entry.doi) {
+    formatted += `, doi: ${entry.doi}`;
+  }
+  if (entry.pubstate) {
+    formatted += `, ${entry.pubstate}`;
+  }
   if (entry.note) {
     formatted += `, ${entry.note}`;
   }

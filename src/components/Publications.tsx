@@ -48,7 +48,12 @@ export const usePublications = () => {
                 const bibEntries = await loadBibFile('/bib.bib');
                 // Sort by year descending (newest first)
                 const sortedEntries = bibEntries.sort((a, b) => {
-                    return parseInt(b.year) - parseInt(a.year);
+                    const bYear = parseInt(b.year);
+                    const aYear = parseInt(a.year);
+                    if (bYear !== aYear) return bYear - aYear;
+                    const bMonth = parseInt(b.month || '0');
+                    const aMonth = parseInt(a.month || '0');
+                    return bMonth - aMonth;
                 });
 
                 // Assign indices based on type grouping
