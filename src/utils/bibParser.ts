@@ -18,6 +18,7 @@ export interface BibEntry {
   eprint?: string;
   pubstate?: string;
   index?: number;
+  link?: string;
 }
 
 export function parseBibFile(bibContent: string): BibEntry[] {
@@ -39,7 +40,8 @@ export function parseBibFile(bibContent: string): BibEntry[] {
       note: cleanBibField(entry.entryTags?.note || ''),
       doi: entry.entryTags?.doi || '',
       eprint: entry.entryTags?.eprint || '',
-      pubstate: entry.entryTags?.pubstate || ''
+      pubstate: entry.entryTags?.pubstate || '',
+      link: entry.entryTags?.link || ''
     }));
   } catch (error) {
     console.error('Error parsing BibTeX:', error);
@@ -103,7 +105,7 @@ export function formatIEEE(entry: BibEntry): string {
   if (entry.publisher) {
     formatted += `, ${entry.publisher}`;
   }
-  if (entry.doi) {
+  if (entry.doi && entry.link) {
     formatted += `, doi: ${entry.doi}`;
   }
   if (entry.pubstate) {
@@ -121,8 +123,14 @@ export function formatIEEE(entry: BibEntry): string {
 export function getIEEEURL(entry: BibEntry): string {
   let formatted = '';
 
-  if (entry.eprint) {
+  if (entry.link) {
+    formatted =`${entry.link}`;
+  }
+  else if (entry.eprint) {
     formatted = `https://arxiv.org/abs/${entry.eprint}`;
+  }
+  else if (entry.doi) {
+    formatted = `https://doi.org/${entry.doi}`;
   }
 
   return formatted;

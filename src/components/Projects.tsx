@@ -18,7 +18,7 @@ export const Projects = () => {
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={2} sx={{ fontSize: '2em', fontWeight: 300 }} >Current Projects</Typography>
+                <Typography mb={2} sx={{ fontSize: '2em', fontWeight: 300 }} >Featured Projects</Typography>
                 <Grid container spacing={4}>
                     {current_projects.map(project => (
                         <Grid key={project.title} item xs={12} sm={6} md={4}>
@@ -37,7 +37,7 @@ export const Projects = () => {
                         userSelect: 'none',
                     }}
                 >
-                    <Typography sx={{ fontSize: '2em', fontWeight: 300 }}>Past Projects</Typography>
+                    <Typography sx={{ fontSize: '2em', fontWeight: 300 }}>Other Projects</Typography>
                     <IconButton sx={{ ml: 1, color: 'inherit' }}>
                         {pastOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </IconButton>
