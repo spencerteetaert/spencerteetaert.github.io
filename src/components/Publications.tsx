@@ -192,6 +192,21 @@ export const Publications = () => {
                 </List>
             </Container>
             <Container maxWidth='md' sx={{ mt: 4 }}>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Talks</Typography>
+                <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
+                    {publications
+                        .filter(pub => pub.type === 'custom')
+                        .map((pub) => (
+                            <PublicationItem
+                                key={pub.key}
+                                text={formatIEEE(pub)}
+                                link={getIEEEURL(pub)}
+                                counter={pub.index}
+                            />
+                        ))}
+                </List>
+            </Container>
+            <Container maxWidth='md' sx={{ mt: 4 }}>
                 <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Other (Poster Presentations, Workshops, etc.)</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications

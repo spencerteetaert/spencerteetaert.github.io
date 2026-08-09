@@ -28,7 +28,7 @@ export function parseBibFile(bibContent: string): BibEntry[] {
       key: entry.citationKey,
       type: entry.entryType,
       title: cleanBibField(entry.entryTags?.title || ''),
-      author: cleanBibField(entry.entryTags?.author || ''),
+      author: entry.entryTags?.author || '',
       year: entry.entryTags?.year || '',
       month: entry.entryTags?.month || '',
       journal: cleanBibField(entry.entryTags?.journal || ''),
@@ -146,21 +146,24 @@ function formatAuthors(authorString: string): string {
   const formattedAuthors = authors.map(author => {
     if (author.includes(',')) {
       // Format is "Last, First Middle" - convert to "F. Last"
-      const [lastName, firstNames] = author.split(',').map(part => part.trim());
+      const [lastName, firstNames, ...noteParts] = splitBibtexOnComma(author).map(part => part.trim());
       if (firstNames) {
-        const firstInitial = firstNames.charAt(0).toUpperCase();
-        return `${firstInitial}. ${lastName}`;
+        const firstNameTokens = tokenizeBibtexName(firstNames).filter(part => !isBibtexNoteToken(part));
+        const givenInitials = formatBibtexInitials(firstNameTokens);
+        return `${givenInitials} ${stripBibtexBraces(lastName)}${formatBibtexNotes(noteParts)}`;
       }
-      return lastName;
+      return `${stripBibtexBraces(lastName)}${formatBibtexNotes(noteParts)}`;
     } else {
-      // Split by spaces and assume last word is surname
-      const parts = author.split(' ');
-      if (parts.length >= 2) {
-        const surname = parts.pop();
-        const firstInitial = parts[0].charAt(0).toUpperCase();
-        return `${firstInitial}. ${surname}`;
+      // Split by spaces outside braces and assume last token is surname
+      const parts = tokenizeBibtexName(author);
+      const noteParts = parts.filter(isBibtexNoteToken);
+      const nameParts = parts.filter(part => !isBibtexNoteToken(part));
+      if (nameParts.length >= 2) {
+        const surname = stripBibtexBraces(nameParts[nameParts.length - 1]);
+        const givenInitials = formatBibtexInitials(nameParts.slice(0, -1));
+        return `${givenInitials} ${surname}${formatBibtexNotes(noteParts)}`;
       }
-      return author;
+      return `${stripBibtexBraces(author)}${formatBibtexNotes(noteParts)}`;
     }
   });
   
@@ -175,6 +178,84 @@ function formatAuthors(authorString: string): string {
     const lastAuthor = formattedAuthors.pop();
     return `${formattedAuthors.join(', ')}, and ${lastAuthor}`;
   }
+}
+
+function tokenizeBibtexName(nameString: string): string[] {
+  const tokens: string[] = [];
+  let currentToken = '';
+  let braceDepth = 0;
+
+  for (const char of nameString) {
+    if (char === '{') {
+      braceDepth += 1;
+      currentToken += char;
+    } else if (char === '}') {
+      braceDepth = Math.max(0, braceDepth - 1);
+      currentToken += char;
+    } else if (char === ' ' && braceDepth === 0) {
+      if (currentToken) {
+        tokens.push(currentToken);
+        currentToken = '';
+      }
+    } else {
+      currentToken += char;
+    }
+  }
+
+  if (currentToken) {
+    tokens.push(currentToken);
+  }
+
+  return tokens;
+}
+
+function splitBibtexOnComma(nameString: string): string[] {
+  const parts: string[] = [];
+  let currentPart = '';
+  let braceDepth = 0;
+
+  for (const char of nameString) {
+    if (char === '{') {
+      braceDepth += 1;
+      currentPart += char;
+    } else if (char === '}') {
+      braceDepth = Math.max(0, braceDepth - 1);
+      currentPart += char;
+    } else if (char === ',' && braceDepth === 0) {
+      parts.push(currentPart);
+      currentPart = '';
+    } else {
+      currentPart += char;
+    }
+  }
+
+  parts.push(currentPart);
+  return parts;
+}
+
+function stripBibtexBraces(value: string): string {
+  return value.replace(/[{}]/g, '').trim();
+}
+
+function isBibtexNoteToken(token: string): boolean {
+  const cleanedToken = stripBibtexBraces(token);
+  return cleanedToken.startsWith('[') || cleanedToken.startsWith('(') || cleanedToken.includes('on behalf of');
+}
+
+function formatBibtexNotes(noteTokens: string[]): string {
+  if (!noteTokens.length) {
+    return '';
+  }
+
+  return ` ${noteTokens.map(stripBibtexBraces).join(' ')}`;
+}
+
+function formatBibtexInitials(nameTokens: string[]): string {
+  return nameTokens
+    .map(token => stripBibtexBraces(token))
+    .filter(Boolean)
+    .map(token => `${token.charAt(0).toUpperCase()}.`)
+    .join(' ');
 }
 
 export async function loadBibFile(path: string): Promise<BibEntry[]> {
