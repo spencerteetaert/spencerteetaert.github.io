@@ -147,7 +147,7 @@ export const Publications = () => {
             }}
         >
             <Container maxWidth='md'>
-                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Peer-Reviewed Journal Articles</Typography>
+                <Typography mb={1} sx={{ fontSize: '2em', fontWeight: 300 }} >Peer-Reviewed Journal and Magazine Articles</Typography>
                 <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
                     {publications
                         .filter(pub => pub.type === 'article')

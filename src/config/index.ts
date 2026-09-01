@@ -25,6 +25,12 @@ export const current_projects: Project[] = [
         ],
         publications: [
             'Teetaert2026b',
+        ],
+        links: [
+            {
+                link: 'https://youtu.be/_BYFs2Dx17Q?t=8977', 
+                text: 'Presentation at Robotics: Science and Systems (RSS) 2026'
+            }
         ]
     },
     {

@@ -28,7 +28,7 @@ export const Banner = () => {
                         Hi, I'm Spencer
                     </Typography>
                     <Typography sx={{ fontSize: '1.2em', my: 2 }}>
-                        A PhD student and robotics researcher at the University of Toronto
+                        A PhD candidate and robotics researcher at the University of Toronto
                     </Typography>
                     <Button
                         size='large'
@@ -76,7 +76,7 @@ export const Banner = () => {
                     About me
                 </Typography>
                 <Typography sx={{ fontSize: '1.2em', fontWeight: 100 }}>
-                    I am a third year PhD student in the <a href="http://asrl.utias.utoronto.ca/" target="_blank" rel="noopener noreferrer">Autonomous Space Robotics Lab</a> and the <a href="https://crl.utm.utoronto.ca/" target="_blank" rel="noopener noreferrer">Continuum Robotics Lab</a> at the University of Toronto, supervised jointly by Professors Timothy D. Barfoot and Jessica Burgner-Kahrs. My research currently focuses on state estimation methods for continuum robots. My goal is to enable practical use of continuum robots in real world applications. 
+                    I am a fourth year PhD candidate in the <a href="http://asrl.utias.utoronto.ca/" target="_blank" rel="noopener noreferrer">Autonomous Space Robotics Lab</a> and the <a href="https://crl.utm.utoronto.ca/" target="_blank" rel="noopener noreferrer">Continuum Robotics Lab</a> at the University of Toronto, supervised jointly by Professors Timothy D. Barfoot and Jessica Burgner-Kahrs. My research currently focuses on probabilistic state estimation methods for continuum robots. My goal is to enable practical use of continuum robots in real world applications through the effective estimation and utilization of modelling uncertainties. 
                 </Typography>
                 {/* <Box textAlign='center' my={4}>
                     <Button variant='outlined' startIcon={<Person />} endIcon={<ExpandMore />} onClick={() => setShowAbout(true)} size="large">
