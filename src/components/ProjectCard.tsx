@@ -4,8 +4,9 @@ import {
 import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
 import { useState } from 'react';
-import { PublicationItem, usePublications } from "@/components/Publications"
-import { formatIEEE, getIEEEURL } from '@/utils/bibParser'
+import Markdown from 'markdown-to-jsx'
+import { publications, getPublicationIndices } from '@/utils/loadPublications'
+import { PublicationEntry } from '@/components/PublicationEntry'
 
 export type ProjectCardProps = {
     project: Project
@@ -13,7 +14,7 @@ export type ProjectCardProps = {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
     const [open, setOpen] = useState(false);
-    const { publications, loading, error } = usePublications();
+    const indices = getPublicationIndices();
 
     return (
         <>
@@ -61,30 +62,33 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                         </Typography> : null}
                     </Box>
                 </CardContent>
-                {
-                    project.sections?.map(section => (
-                        <CardContent>
-                            {section.header ? <Typography variant='h6' sx={{ fontWeight: 600 }}>
-                                {section.header}
-                            </Typography> : null}
-                            <Typography color='text.secondary'>
-                                {section.content}
-                            </Typography>
-                            {section.image ?
-                                <Box sx={{ width: '100%', mt: 2 }}>
-                                    <img
-                                        src={section.image}
-                                        alt={section.header}
-                                        style={{
-                                            width: '100%',
-                                            height: 'auto',
-                                            display: 'block'
-                                        }}
-                                    />
-                                </Box> : null}
-                        </CardContent>
-                    ))
-                }
+                <CardContent>
+                    <Markdown options={{
+                        overrides: {
+                            h1: { component: Typography, props: { variant: 'h6', sx: { fontWeight: 600 } } },
+                            h2: { component: Typography, props: { variant: 'h6', sx: { fontWeight: 600 } } },
+                            h3: { component: Typography, props: { variant: 'h6', sx: { fontWeight: 600 } } },
+                            p: { component: Typography, props: { color: 'text.secondary', sx: { mb: 2 } } },
+                            img: {
+                                component: ({ src, alt }: { src?: string, alt?: string }) => (
+                                    <Box sx={{ width: '100%', mt: 2 }}>
+                                        <img
+                                            src={src}
+                                            alt={alt}
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                display: 'block'
+                                            }}
+                                        />
+                                    </Box>
+                                ),
+                            },
+                        },
+                    }}>
+                        {project.body}
+                    </Markdown>
+                </CardContent>
                 {
                     project.publications ?
                         <CardContent>
@@ -92,34 +96,19 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                                 References
                             </Typography>
                             <List sx={{ listStyleType: 'none', counterReset: 'ieee-counter' }}>
-                                {project.publications?.map(publication => {
-                                    const pub = publications.find(pub => pub.key === publication);
+                                {project.publications?.map(publicationKey => {
+                                    const pub = publications.find(pub => pub.key === publicationKey);
                                     if (!pub) return null;
                                     return (
-                                        <PublicationItem
-                                            key={publication}
-                                            text={formatIEEE(pub)}
-                                            link={getIEEEURL(pub)}
-                                            counter={pub.index}
+                                        <PublicationEntry
+                                            key={publicationKey}
+                                            publication={pub}
+                                            counter={indices[publicationKey]}
                                         />
                                     );
                                 })}
                             </List>
                         </CardContent> : null
-                }
-                {
-                    project.links? <CardContent>
-                        <Typography variant='h6' sx={{ fontWeight: 600 }}>
-                            Links
-                        </Typography>
-                        {project.links?.map((link, index) => (
-                            <Box key={index}>
-                                <Link href={link.link} target="_blank" rel="noopener noreferrer">
-                                    {link.text}
-                                </Link>
-                            </Box>
-                        ))}
-                    </CardContent>: null
                 }
             </Dialog>
 
@@ -149,18 +138,21 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                     </Box>
 
                     <CardContent>
-                        <Typography variant='h5' sx={{ fontWeight: 600 }} mb={2}>{project.title}</Typography>
+                        <Typography variant='h5' sx={{ fontWeight: 600 }}>{project.title}</Typography>
+                        {project.dates ? <Typography color='text.secondary' mb={2}>
+                            {project.dates}
+                        </Typography> : null}
                         <Typography
                             sx={{
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
                                 display: "-webkit-box",
-                                WebkitLineClamp: "3",
+                                WebkitLineClamp: "2",
                                 WebkitBoxOrient: "vertical",
                             }}
                             color='text.secondary'
                         >
-                            {project.description}
+                            {project.abstract}
                         </Typography>
                     </CardContent>
                 </Card>

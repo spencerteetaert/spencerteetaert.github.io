@@ -1,17 +1,13 @@
-export type Project = {
+export type ProjectFrontmatter = {
     title: string
     dates?: string
     bannerImg?: string
     repoUrl?: string
-    description?: string
-    sections?: {
-        header?: string
-        content: string
-        image?: string
-    }[]
+    abstract: string
     publications?: string[]
-    links?: {
-        link: string
-        text: string
-    }[]
+}
+
+export type Project = ProjectFrontmatter & {
+    key: string
+    body: string
 }
