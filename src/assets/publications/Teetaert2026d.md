@@ -1,6 +1,6 @@
 ---
 title: "Toward Uncertainty-Aware Intelligence in Soft Robotics"
-authors: "Spencer Teetaert [on behalf of J. Burgner-Kahrs]"
+authors: "Spencer Teetaert [on behalf of Jessica Burgner-Kahrs]"
 category: talk
 year: 2026
 month: 6
