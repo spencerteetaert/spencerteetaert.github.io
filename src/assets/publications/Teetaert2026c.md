@@ -6,6 +6,7 @@ year: 2026
 month: 4
 venue: "Extended Abstract at IEEE 9th International Conference on Soft Robotics (RoboSoft)"
 pdf: "https://arxiv.org/pdf/2608.05410"
+doi: "https://doi.org/10.48550/arXiv.2608.05410"
 ---
 @unpublished{Teetaert2026c,
   title={Sliding Sensors: Configurable Confidence in State Estimation for Continuum Robots}, 

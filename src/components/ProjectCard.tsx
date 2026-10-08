@@ -3,10 +3,17 @@ import {
 } from '@mui/material'
 import { Project } from '@/types';
 import { GitHub, ArrowBack } from '@mui/icons-material';
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Markdown from 'markdown-to-jsx'
 import { publications, getPublicationIndices } from '@/utils/loadPublications'
 import { PublicationEntry } from '@/components/PublicationEntry'
+
+const Caption = ({ children }: { children: ReactNode }) => (
+    <Typography component='span' variant='body2' color='text.secondary'
+        sx={{ display: 'block', fontStyle: 'italic', mt: 1 }}>
+        {children}
+    </Typography>
+)
 
 export type ProjectCardProps = {
     project: Project
@@ -69,9 +76,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                             h2: { component: Typography, props: { variant: 'h6', sx: { fontWeight: 600 } } },
                             h3: { component: Typography, props: { variant: 'h6', sx: { fontWeight: 600 } } },
                             p: { component: Typography, props: { color: 'text.secondary', sx: { mb: 2 } } },
+                            // Optional caption via markdown image title: ![alt](src "Caption")
                             img: {
-                                component: ({ src, alt }: { src?: string, alt?: string }) => (
-                                    <Box sx={{ width: '100%', mt: 2 }}>
+                                component: ({ src, alt, title }: { src?: string, alt?: string, title?: string }) => (
+                                    <Box component='span' sx={{ display: 'block', width: '100%', mt: 2 }}>
                                         <img
                                             src={src}
                                             alt={alt}
@@ -81,6 +89,25 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                                                 display: 'block'
                                             }}
                                         />
+                                        {title ? <Caption>{title}</Caption> : null}
+                                    </Box>
+                                ),
+                            },
+                            // Muted, looping inline clip: <video src="..." poster="..." title="Caption"></video>
+                            video: {
+                                component: ({ src, poster, title }: { src?: string, poster?: string, title?: string }) => (
+                                    <Box component='span' sx={{ display: 'block', width: '100%', mt: 2, mb: 2 }}>
+                                        <video
+                                            src={src}
+                                            poster={poster}
+                                            autoPlay muted loop playsInline controls
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                display: 'block'
+                                            }}
+                                        />
+                                        {title ? <Caption>{title}</Caption> : null}
                                     </Box>
                                 ),
                             },

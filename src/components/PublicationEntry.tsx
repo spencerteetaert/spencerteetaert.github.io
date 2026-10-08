@@ -55,7 +55,7 @@ export const PublicationEntry = ({ publication, counter = -1 }: PublicationEntry
                     ) : null}
                     {publication.pdf ? (
                         <Tooltip title='Download PDF'>
-                            <IconButton size='small' href={`${publication.pdf}`} download target='_blank' rel='noopener noreferrer'>
+                            <IconButton size='small' href={`${publication.pdf}`} target='_blank' rel='noopener noreferrer'>
                                 <PictureAsPdf fontSize='small' />
                             </IconButton>
                         </Tooltip>

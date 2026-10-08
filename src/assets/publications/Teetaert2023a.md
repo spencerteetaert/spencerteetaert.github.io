@@ -4,6 +4,7 @@ authors: "Spencer Teetaert, Wenda Zhao, Niu Xinyuan, Hashir Zahir, Huiyu Leong, 
 category: preprint
 year: 2023
 pdf: "https://arxiv.org/pdf/2308.16743"
+doi: "https://doi.org/10.48550/arXiv.2308.16743"
 ---
 @misc{Teetaert2023a,
   title={A Remote Sim2real Aerial Competition: Fostering Reproducibility and Solutions' Diversity in Robotics Challenges}, 

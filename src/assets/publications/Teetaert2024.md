@@ -6,6 +6,7 @@ year: 2024
 month: 9
 venue: "Extended Abstract at 40th Anniversary of the IEEE International Conference on Robotics and Automation (ICRA40)"
 pdf: "https://arxiv.org/pdf/2409.12302"
+doi: "https://doi.org/10.48550/arXiv.2409.12302"
 ---
 @misc{Teetaert2024,
   title={Space-Time Continuum: Continuous Shape and Time State Estimation for Flexible Robots},
