@@ -1,9 +1,9 @@
 ---
 title: "A Stochastic Framework for Continuous-Time State Estimation of Continuum Robots"
 authors: "Spencer Teetaert, Sven Lilge, Jessica Burgner-Kahrs, and Timothy D. Barfoot"
-category: preprint
-year: 2025
-venue: "Conditionally accepted at IEEE Transactions on Robotics"
+category: journal
+year: 2026
+venue: "IEEE Transactions on Robotics (forthcoming)"
 pdf: "https://arxiv.org/pdf/2510.01381"
 doi: "https://doi.org/10.48550/arXiv.2510.01381"
 ---
