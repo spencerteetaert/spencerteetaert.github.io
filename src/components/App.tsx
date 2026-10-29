@@ -13,7 +13,7 @@ export const App = () => {
       <Projects />
       <Publications />
       <Typography align="center" sx={{ py: 4, fontSize: '0.8em', color: 'text.secondary' }}>
-        Last updated: September 23, 2026
+        Last updated: October 29, 2026
       </Typography>
     </AppThemeProvider>
   )
