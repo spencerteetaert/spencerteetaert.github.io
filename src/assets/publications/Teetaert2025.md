@@ -5,9 +5,9 @@ category: journal
 year: 2025
 venue: "IEEE Robotics & Automation Magazine, vol. 32, no. 1, pp. 117-123"
 doi: "10.1109/MRA.2025.3527291"
-pdf: "papers/Teetaert2025a.pdf"
+pdf: "papers/Teetaert2025.pdf"
 ---
-@article{Teetaert2025a,
+@article{Teetaert2025,
   author   = {Teetaert, Spencer and Zhao, Wenda and Loquercio, Antonio and Zhou, Siqi and Brunke, Lukas and Schuck, Martin and Hönig, Wolfgang and Panerati, Jacopo and Schoellig, Angela P.},
   journal  = {IEEE Robotics & Automation Magazine},
   title    = {Advancing Reproducibility, Benchmarks, and Education With Remote Sim2real: Remote Simulation to Real Robot Hardware},

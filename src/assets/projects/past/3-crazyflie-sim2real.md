@@ -5,9 +5,9 @@ bannerImg: "images/sim2real.png"
 repoUrl: "https://github.com/utiasDSL/safe-control-gym/tree/beta-iros-competition"
 abstract: "A pipeline for zero-shot sim to real transfer of controllers for the CrazyFlie nano-quadcopter."
 publications:
-  - Teetaert2025a
-  - Teetaert2023a
-  - Teetaert2023b
+  - Teetaert2025
+  - Teetaert2023report
+  - Teetaert2023cdc
   - Teetaert2022
 ---
 ## Background

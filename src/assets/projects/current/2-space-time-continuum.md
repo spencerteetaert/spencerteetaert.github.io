@@ -5,8 +5,8 @@ bannerImg: "images/spacetime.png"
 repoUrl: "https://github.com/utiasASRL/space_time_continuum"
 abstract: "PhD research on continuous-time state estimation methods for continuum robots."
 publications:
-  - Teetaert2026a
-  - Teetaert2025b
+  - Teetaert2026swf
+  - Teetaert2026stochastic
   - Teetaert2024
 ---
 ## Background

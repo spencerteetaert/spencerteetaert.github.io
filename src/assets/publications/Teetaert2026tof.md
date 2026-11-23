@@ -8,7 +8,7 @@ venue: "Proceedings of Robotics: Science and Systems, Sydney, Australia"
 pdf: "https://www.roboticsproceedings.org/rss22/p050.pdf"
 doi: "10.15607/RSS.2026.XXII.050"
 ---
-@inproceedings{Teetaert2026b,
+@inproceedings{Teetaert2026tof,
   author    = {Spencer Teetaert and Giammarco Caroleo and Marco Pontin and Sven Lilge and Jessica Burgner-Kahrs and Timothy Barfoot and Perla Maiolino},
   title     = {{Continuum Robot Localization using Distributed Time-of-Flight Sensors}},
   booktitle = {Proceedings of Robotics: Science and Systems},

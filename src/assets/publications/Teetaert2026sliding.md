@@ -8,7 +8,7 @@ venue: "Extended Abstract at IEEE 9th International Conference on Soft Robotics 
 pdf: "https://arxiv.org/pdf/2608.05410"
 doi: "https://doi.org/10.48550/arXiv.2608.05410"
 ---
-@unpublished{Teetaert2026c,
+@unpublished{Teetaert2026sliding,
   title={Sliding Sensors: Configurable Confidence in State Estimation for Continuum Robots}, 
   author={Ella Walsh and Spencer Teetaert and Eric Diller and Timothy D. Barfoot and Jessica Burgner-Kahrs},
   year={2026},

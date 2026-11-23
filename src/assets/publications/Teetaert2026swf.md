@@ -7,7 +7,7 @@ venue: "2026 IEEE 9th International Conference on Soft Robotics (RoboSoft), pp. 
 doi: "10.1109/RoboSoft67810.2026.11522922"
 pdf: "https://arxiv.org/pdf/2510.26623"
 ---
-@inproceedings{Teetaert2026a,
+@inproceedings{Teetaert2026swf,
   author={Teetaert, Spencer and Lilge, Sven and Burgner-Kahrs, Jessica and Barfoot, Timothy D.},
   booktitle={2026 IEEE 9th International Conference on Soft Robotics (RoboSoft)},
   title={A Sliding-Window Filter for Online Continuous-Time Continuum Robot State Estimation},

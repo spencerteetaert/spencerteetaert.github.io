@@ -4,7 +4,7 @@ dates: "December 2025 - February 2026"
 bannerImg: "images/sliding_sensors.png"
 abstract: "Adaptable uncertainty profiles for continuum robots via translating sensors."
 publications:
-  - Teetaert2026c
+  - Teetaert2026sliding
 ---
 ## Introduction
 
